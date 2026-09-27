@@ -10,6 +10,9 @@
   <img src="https://img.shields.io/badge/Laravel-11%20%7C%2012-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel 11 | 12" />
   <img src="https://img.shields.io/badge/tests-45%20passing-7F75E8?style=for-the-badge" alt="45 tests passing" />
   <img src="https://img.shields.io/badge/license-MIT-0A0A0A?style=for-the-badge" alt="MIT" />
+  <br />
+  <a href="https://packagist.org/packages/predev-solutions/egypt-validators"><img src="https://img.shields.io/packagist/v/predev-solutions/egypt-validators?style=for-the-badge&label=packagist&color=F28D1A&logo=packagist&logoColor=white" alt="Latest version on Packagist" /></a>
+  <a href="https://packagist.org/packages/predev-solutions/egypt-validators/stats"><img src="https://img.shields.io/packagist/dt/predev-solutions/egypt-validators?style=for-the-badge&color=7F75E8&logo=composer&logoColor=white" alt="Total downloads" /></a>
 </p>
 
 ---
