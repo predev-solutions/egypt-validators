@@ -8,7 +8,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/PHP-%5E8.2-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP 8.2+" />
   <img src="https://img.shields.io/badge/Laravel-11%20%7C%2012-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel 11 | 12" />
-  <img src="https://img.shields.io/badge/tests-60%20passing-7F75E8?style=for-the-badge" alt="60 tests passing" />
+  <img src="https://img.shields.io/badge/tests-79%20passing-7F75E8?style=for-the-badge" alt="79 tests passing" />
   <img src="https://img.shields.io/badge/license-MIT-0A0A0A?style=for-the-badge" alt="MIT" />
   <br />
   <a href="https://packagist.org/packages/predev-solutions/egypt-validators"><img src="https://img.shields.io/packagist/v/predev-solutions/egypt-validators?style=for-the-badge&label=packagist&color=F28D1A&logo=packagist&logoColor=white" alt="Latest version on Packagist" /></a>
@@ -93,16 +93,20 @@ $request->validate([
 ]);
 ```
 
-### Arabic and English messages
-
-The rules' error messages ship in English and Arabic under the `egypt-validators` translation namespace, in `lang/en/validation.php` and `lang/ar/validation.php`. Register the namespace once, for example in `AppServiceProvider::boot()`:
+The package's service provider is auto-discovered, so the rules also work as strings:
 
 ```php
-app('translator')->addNamespace(
-    'egypt-validators',
-    base_path('vendor/predev-solutions/egypt-validators/lang'),
-);
+$request->validate([
+    'national_id' => 'required|egyptian_national_id',
+    'phone'       => 'required|egyptian_mobile',
+]);
 ```
+
+Use the rule objects above when you need options such as `minAge()`, `gender()` or `carriers()`.
+
+### Arabic and English messages
+
+The rules' error messages ship in English and Arabic under the `egypt-validators` translation namespace, in `lang/en/validation.php` and `lang/ar/validation.php`. The service provider loads them, so there is nothing to set up.
 
 With the app locale set to `ar`, failed rules read like this:
 
@@ -113,7 +117,7 @@ app()->setLocale('ar');
 // "يجب أن يكون الرقم القومي رقمًا قوميًا مصريًا صحيحًا."
 ```
 
-To change a message, copy the file to `lang/vendor/egypt-validators/{locale}/validation.php` in your app and edit it. If the namespace is not registered, or the locale has no file, the rules use the English text.
+To change a message, copy the file to `lang/vendor/egypt-validators/{locale}/validation.php` in your app and edit it. For the string rules you can also add `egyptian_mobile` or `egyptian_national_id` to your app's own `lang/{locale}/validation.php`, or pass a custom message to the validator. If the locale has no file, the rules use the English text.
 
 ## Testing
 
