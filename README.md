@@ -8,7 +8,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/PHP-%5E8.2-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP 8.2+" />
   <img src="https://img.shields.io/badge/Laravel-11%20%7C%2012-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel 11 | 12" />
-  <img src="https://img.shields.io/badge/tests-45%20passing-7F75E8?style=for-the-badge" alt="45 tests passing" />
+  <img src="https://img.shields.io/badge/tests-60%20passing-7F75E8?style=for-the-badge" alt="60 tests passing" />
   <img src="https://img.shields.io/badge/license-MIT-0A0A0A?style=for-the-badge" alt="MIT" />
   <br />
   <a href="https://packagist.org/packages/predev-solutions/egypt-validators"><img src="https://img.shields.io/packagist/v/predev-solutions/egypt-validators?style=for-the-badge&label=packagist&color=F28D1A&logo=packagist&logoColor=white" alt="Latest version on Packagist" /></a>
@@ -92,6 +92,28 @@ $request->validate([
     'wallet'      => ['required', EgyptianMobile::make()->carriers(Carrier::Vodafone)],
 ]);
 ```
+
+### Arabic and English messages
+
+The rules' error messages ship in English and Arabic under the `egypt-validators` translation namespace, in `lang/en/validation.php` and `lang/ar/validation.php`. Register the namespace once, for example in `AppServiceProvider::boot()`:
+
+```php
+app('translator')->addNamespace(
+    'egypt-validators',
+    base_path('vendor/predev-solutions/egypt-validators/lang'),
+);
+```
+
+With the app locale set to `ar`, failed rules read like this:
+
+```php
+app()->setLocale('ar');
+
+// "يجب أن يكون رقم الموبايل رقم موبايل مصريًا صحيحًا."
+// "يجب أن يكون الرقم القومي رقمًا قوميًا مصريًا صحيحًا."
+```
+
+To change a message, copy the file to `lang/vendor/egypt-validators/{locale}/validation.php` in your app and edit it. If the namespace is not registered, or the locale has no file, the rules use the English text.
 
 ## Testing
 
